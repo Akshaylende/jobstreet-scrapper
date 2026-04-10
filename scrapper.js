@@ -34,7 +34,8 @@ async function runScraper() {
         await page.goto(SEARCH_URL, { waitUntil: 'networkidle2', timeout: 60000 });
         
         // Wait for the job cards to load
-        await page.waitForSelector('a[data-automation="jobTitle"]', { timeout: 15000 });
+        await page.waitForSelector('a[data-automation="jobTitle"]', { timeout: 30000 });
+        // await page.waitForSelector('a[data-automation="jobTitle"]', { timeout: 15000 });
 
         // Extract all job URLs from the search page
         const jobUrls = await page.$$eval('a[data-automation="jobTitle"]', links => 
@@ -106,7 +107,20 @@ async function runScraper() {
         }
 
     } catch (error) {
-        console.error('❌ Scraper failed:', error);
+        console.error('❌ Scraper failed:', error.message);
+        
+        // DEBUGGING: Let's see what the bot is actually looking at!
+        try {
+            const pageTitle = await page.title();
+            console.log('🔍 The page title was:', pageTitle);
+            
+            // Grab the first 500 characters of text on the screen
+            const pageText = await page.evaluate(() => document.body.innerText.substring(0, 500));
+            console.log('📄 Page text snippet:\n', pageText);
+        } catch (e) {
+            console.log('Could not extract page text.');
+        }
+
     } finally {
         await browser.close();
     }
