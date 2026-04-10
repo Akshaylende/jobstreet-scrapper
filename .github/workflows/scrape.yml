@@ -6,21 +6,17 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch: 
 
-# This forces all actions to use Node 24, silencing the deprecation warning
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
-
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6 # Upgraded to native Node 24 support
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6 # Upgraded to native Node 24 support
         with:
-          node-version: '24' # Upgraded from 20 to 24
+          node-version: '24' 
 
       - name: Install Dependencies
         run: npm ci
