@@ -1,0 +1,25 @@
+name: Daily JobStreet Scraper
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every day (Adjust the cron schedule as needed)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows you to trigger it manually from the GitHub UI
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use your Node version
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Scraper
+        run: node scraper.js
