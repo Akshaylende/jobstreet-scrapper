@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 // JobStreet SG URL for jobs posted in the last 1 day (daterange=1)
 const SEARCH_URL = 'https://sg.jobstreet.com/jobs/in-Singapore?classification=1203%2C6281&daterange=1&salaryrange=3000-&salarytype=monthly&subclassification=6185%2C6180%2C6178%2C6285%2C6287%2C6290%2C6294%2C6302&worktype=242%2C244';
 // Replace this with your n8n Webhook URL
-const N8N_WEBHOOK_URL = 'https://play.svix.com/in/e_kvj1QZ6hyh4AD3hp7DQ6vGVLmEW/'; 
+const N8N_WEBHOOK_URL = 'http://localhost:5678/webhook-test/jobstreet-ingest'; 
 
 // Helper function to introduce random delays to mimic human behavior
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
