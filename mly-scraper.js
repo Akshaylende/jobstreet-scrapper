@@ -8,7 +8,7 @@ puppeteer.use(StealthPlugin());
 
 // --- CONFIGURATION ---
 
-// The base URL without the page parameter
+// The base URL without the page parameter1
 const BASE_SEARCH_URL =
     "https://my.jobstreet.com/jobs/in-Malaysia?classification=1203%2C6281&daterange=2&salaryrange=3000-&salarytype=monthly&subclassification=6178%2C6185%2C6287%2C6290%2C6294%2C6302&worktype=242%2C244";
 
